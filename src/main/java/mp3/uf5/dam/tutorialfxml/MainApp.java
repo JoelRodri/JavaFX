@@ -11,6 +11,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import mp3.uf5.dam.tutorialfxml.control.PersonEditDialogController;
 import mp3.uf5.dam.tutorialfxml.control.PersonOverviewController;
+import mp3.uf5.dam.tutorialfxml.control.RootLayoutControler;
 import mp3.uf5.dam.tutorialfxml.model.Person;
 
 import java.io.IOException;
@@ -61,9 +62,10 @@ public class MainApp extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("root-layout.fxml"));
             rootLayout = (BorderPane) loader.load();
-
+            RootLayoutControler rootLayoutControler = loader.getController();
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
+            rootLayoutControler.setScene(scene,rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
