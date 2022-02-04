@@ -1,10 +1,7 @@
 package mp3.uf5.dam.tutorialfxml.control;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import mp3.uf5.dam.tutorialfxml.MainApp;
 import mp3.uf5.dam.tutorialfxml.model.Person;
 import mp3.uf5.dam.tutorialfxml.util.DateUtil;
@@ -30,6 +27,7 @@ public class PersonOverviewController {
     @FXML
     private Label birthdayLabel;
 
+
     // Reference to the main application.
     private MainApp mainApp;
 
@@ -48,7 +46,6 @@ public class PersonOverviewController {
     private void initialize() {
         // Initialize the person table with the two columns.
         firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
-        lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
 
         // Clear person details.
         showPersonDetails(null);
