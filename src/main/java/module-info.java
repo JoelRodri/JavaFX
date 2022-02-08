@@ -1,6 +1,7 @@
 module mp3.uf5.dam.tutorialfxml {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.xml;
 
 
     opens mp3.uf5.dam.tutorialfxml to javafx.fxml;

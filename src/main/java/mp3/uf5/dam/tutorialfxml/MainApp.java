@@ -13,8 +13,22 @@ import mp3.uf5.dam.tutorialfxml.control.PersonEditDialogController;
 import mp3.uf5.dam.tutorialfxml.control.PersonOverviewController;
 import mp3.uf5.dam.tutorialfxml.control.RootLayoutControler;
 import mp3.uf5.dam.tutorialfxml.model.Person;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
+import javax.xml.XMLConstants;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
 
 public class MainApp extends Application {
     private Stage primaryStage;
@@ -24,19 +38,12 @@ public class MainApp extends Application {
 
     public MainApp() {
         // Add some sample data
-        personData.add(new Person("Hans", "Muster"));
-        personData.add(new Person("Ruth", "Mueller"));
-        personData.add(new Person("Heinz", "Kurz"));
-        personData.add(new Person("Cornelia", "Meier"));
-        personData.add(new Person("Werner", "Meyer"));
-        personData.add(new Person("Lydia", "Kunz"));
-        personData.add(new Person("Anna", "Best"));
-        personData.add(new Person("Stefan", "Meier"));
-        personData.add(new Person("Martin", "Mueller"));
+        readXML();
     }
 
     /**
      * Returns the data as an observable list of Persons.
+     *
      * @return ObservableList<Person>
      */
     public ObservableList<Person> getPersonData() {
@@ -65,7 +72,7 @@ public class MainApp extends Application {
             RootLayoutControler rootLayoutControler = loader.getController();
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
-            rootLayoutControler.setScene(scene,rootLayout);
+            rootLayoutControler.setScene(scene, rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
@@ -135,6 +142,7 @@ public class MainApp extends Application {
 
     /**
      * Returns the main stage.
+     *
      * @return Stage
      */
     public Stage getPrimaryStage() {
@@ -142,8 +150,94 @@ public class MainApp extends Application {
     }
 
 
-
     public static void main(String[] args) {
         launch(args);
+    }
+
+
+    public void readXML(){
+
+        try {
+            // internet URL
+            URL url = new URL("http://gencat.cat/llengua/cinema/provacin.xml");
+
+            // download and save image
+            ReadableByteChannel rbc = Channels.newChannel(url.openStream());
+            FileOutputStream fos = new FileOutputStream("cat.xml");
+            fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+
+            //close writers
+            fos.close();
+            rbc.close();
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        String FILENAME = "/home/dam2a-2021/IdeaProjects/tutorialJavaFX-main/cat.xml";
+        // Instantiate the Factory
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+
+        try {
+
+            // optional, but recommended
+            // process XML securely, avoid attacks like XML External Entities (XXE)
+            dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+
+            // parse XML file
+            DocumentBuilder db = dbf.newDocumentBuilder();
+
+            Document doc = db.parse(new File(FILENAME));
+
+            // optional, but recommended
+            // http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
+            doc.getDocumentElement().normalize();
+
+            System.out.println("Root Element :" + doc.getDocumentElement().getNodeName());
+            System.out.println("------");
+
+            // get <staff>
+            NodeList list = doc.getElementsByTagName("FILM");
+
+            for (int temp = 0; temp < list.getLength(); temp++) {
+
+                Node node = list.item(temp);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+
+                    Element element = (Element) node;
+
+                    // get staff's attribute
+                    //String id = element.getAttribute("id");
+
+                    // get text
+                    String firstname = element.getElementsByTagName("TITOL").item(0).getTextContent();
+                    String lastname = element.getElementsByTagName("CARTELL").item(0).getTextContent();
+                    String street = element.getElementsByTagName("IDIOMA_x0020_ORIGINAL").item(0).getTextContent();
+                    String city = element.getElementsByTagName("ESTRENA").item(0).getTextContent();
+
+                    //NodeList salaryNodeList = element.getElementsByTagName("salary");
+                    //String salary = salaryNodeList.item(0).getTextContent();
+
+                    // get salary's attribute
+                    //String currency = salaryNodeList.item(0).getAttributes().getNamedItem("currency").getTextContent();
+
+                    System.out.println("Current Element :" + node.getNodeName());
+                    // System.out.println("Staff Id : " + id);
+                    System.out.println("First Name : " + firstname);
+                    System.out.println("Last Name : " + lastname);
+                    System.out.println("Idioma: " + street);
+                    String imagen = "http://gencat.cat/llengua/cinema/"+ lastname;
+
+                    personData.add(new Person(firstname, imagen , street, city));
+                    //System.out.printf("Salary [Currency] : %,.2f [%s]%n%n", Float.parseFloat(salary), currency);
+                }
+
+
+            }
+
+        } catch (ParserConfigurationException | SAXException | IOException e) {
+            e.printStackTrace();
+        }
     }
 }

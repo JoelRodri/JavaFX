@@ -2,6 +2,8 @@ package mp3.uf5.dam.tutorialfxml.control;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import mp3.uf5.dam.tutorialfxml.MainApp;
 import mp3.uf5.dam.tutorialfxml.model.Person;
 import mp3.uf5.dam.tutorialfxml.util.DateUtil;
@@ -26,7 +28,8 @@ public class PersonOverviewController {
     private Label cityLabel;
     @FXML
     private Label birthdayLabel;
-
+    @FXML
+    private ImageView image;
 
     // Reference to the main application.
     private MainApp mainApp;
@@ -82,6 +85,8 @@ public class PersonOverviewController {
             postalCodeLabel.setText(Integer.toString(person.getPostalCode()));
             cityLabel.setText(person.getCity());
             birthdayLabel.setText(DateUtil.format(person.getBirthday()));
+            image.setImage(new Image(person.getLastName()));
+
         } else {
             // Person is null, remove all the text.
             firstNameLabel.setText("");
