@@ -4,7 +4,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane minHeight="500" minWidth="700" stylesheets="@../../../../css/WitheTheme.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mp3.uf5.dam.tutorialfxml.control.PersonOverviewController">
+<AnchorPane minHeight="500" minWidth="700" stylesheets="@../../../../WitheTheme.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mp3.uf5.dam.tutorialfxml.control.PersonOverviewController">
    <children>
       <SplitPane dividerPositions="0.29797979797979796, 0.5" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
