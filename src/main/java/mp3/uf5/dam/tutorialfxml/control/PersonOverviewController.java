@@ -35,15 +35,15 @@ public class PersonOverviewController {
     private MainApp mainApp;
 
     /**
-     * The constructor.
-     * The constructor is called before the initialize() method.
+     * El construcor.
+     * El constructor se llama al iniciar el metodo initialize().
      */
     public PersonOverviewController() {
     }
 
     /**
-     * Initializes the controller class. This method is automatically called
-     * after the fxml file has been loaded.
+     * Inicializa la clase de controlador.
+     * Este método se llama automáticamente después de que se haya cargado el archivo fxml.
      */
     @FXML
     private void initialize() {
@@ -59,8 +59,7 @@ public class PersonOverviewController {
     }
 
     /**
-     * Is called by the main application to give a reference back to itself.
-     *
+     * Es llamado por la aplicación principal para devolver una referencia a sí mismo.
      * @param mainApp
      */
     public void setMainApp(MainApp mainApp) {
@@ -76,10 +75,10 @@ public class PersonOverviewController {
     }
 
     /**
-     * Fills all text fields to show details about the person.
-     * If the specified person is null, all text fields are cleared.
+     * Rellena todos los campos de texto para mostrar detalles sobre la persona.
+     * Si la persona especificada es nula, se borran todos los campos de texto.
      *
-     * @param person the person or null
+     * @param person la persona o null
      */
     private void showPersonDetails(Person person) {
         if (person != null) {
@@ -104,7 +103,7 @@ public class PersonOverviewController {
     }
 
     /**
-     * Called when the user clicks on the delete button.
+     * Se llama cuando el usuario hace clic en el botón Eliminar.
      */
     @FXML
     private void handleDeletePerson() {
@@ -114,9 +113,9 @@ public class PersonOverviewController {
         } else {
             // Nothing selected.
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("No selection");
-            alert.setHeaderText("No person selected");
-            alert.setContentText("Please select a person in the table.");
+            alert.setTitle("No ha seleccionado nada");
+            alert.setHeaderText("Ninguna pelicula seleccionada");
+            alert.setContentText("Por favor, selecciona una pelicula de la tabla.");
             alert.show();
             /*Dialogs.create()
                     .title("No Selection")
@@ -128,8 +127,8 @@ public class PersonOverviewController {
     }
 
     /**
-     * Called when the user clicks the new button. Opens a dialog to edit
-     * details for a new person.
+     * Se llama cuando el usuario hace clic en el botón nuevo.
+     * Se abre una ventana para editar los detalles de una nueva pelicula.
      */
     @FXML
     private void handleNewPerson() {
@@ -141,8 +140,8 @@ public class PersonOverviewController {
     }
 
     /**
-     * Called when the user clicks the edit button. Opens a dialog to edit
-     * details for the selected person.
+     * Se llama cuando el usuario hace clic en el botón editar.
+     * Se abre una ventana para editar los detalles de la pelicula.
      */
     @FXML
     private void handleEditPerson() {
@@ -156,9 +155,9 @@ public class PersonOverviewController {
         } else {
             // Nothing selected.
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("No selection");
-            alert.setHeaderText("No person selected");
-            alert.setContentText("Please select a person in the table.");
+            alert.setTitle("No ha seleccionado nada");
+            alert.setHeaderText("Ninguna pelicula seleccionada");
+            alert.setContentText("Por favor, selecciona una pelicula de la tabla.");
             alert.show();
 
         }

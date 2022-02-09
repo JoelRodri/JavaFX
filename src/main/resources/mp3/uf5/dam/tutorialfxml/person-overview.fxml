@@ -10,8 +10,8 @@
         <items>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="image" fitHeight="450.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button layoutX="103.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleShowGraphics" text="Button" />
+                  <ImageView fx:id="image" cache="true" cacheHint="SCALE" fitHeight="450.0" fitWidth="200.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                  <Button layoutX="103.0" layoutY="458.0" mnemonicParsing="false" onAction="#handleShowGraphics" text="Grafico" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -43,12 +43,12 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Nombre" />
-                        <Label text="Last Name" GridPane.rowIndex="1" />
-                        <Label text="Street" GridPane.rowIndex="2" />
-                        <Label text="City" GridPane.rowIndex="3" />
-                        <Label text="Postal Code" GridPane.rowIndex="4" />
-                        <Label text="Birthday" GridPane.rowIndex="5" />
+                        <Label text="Titulo" />
+                        <Label text="Año" GridPane.rowIndex="1" />
+                        <Label text="Director" GridPane.rowIndex="2" />
+                        <Label text="Actores" GridPane.rowIndex="3" />
+                        <Label text="Idiomas" GridPane.rowIndex="4" />
+                        <Label text="Sipnosis" GridPane.rowIndex="5" />
                         <Label fx:id="firstNameLabel" styleClass="label-bright" text="Label" GridPane.columnIndex="1" />
                         <Label fx:id="lastNameLabel" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label fx:id="streetLabel" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -59,9 +59,10 @@
                   </GridPane>
                   <HBox layoutX="129.0" layoutY="242.0" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#handleNewPerson" text="New.." />
-                        <Button mnemonicParsing="false" onAction="#handleEditPerson" text="Edit.." />
-                        <Button mnemonicParsing="false" onAction="#handleDeletePerson" text="Delete" />
+                        <Button mnemonicParsing="false" onAction="#handleNewPerson" text="Trailer" />
+                        <Button mnemonicParsing="false" onAction="#handleEditPerson" text="Editar" />
+                        <Button mnemonicParsing="false" text="Button" />
+                        <Button mnemonicParsing="false" onAction="#handleDeletePerson" text="Borrar" />
                      </children>
                   </HBox>
                </children></AnchorPane>

@@ -27,15 +27,14 @@ public class PersonEditDialogController {
     private boolean okClicked = false;
 
     /**
-     * Initializes the controller class. This method is automatically called
-     * after the fxml file has been loaded.
+     * Inicializa la clase de controlador. Este método se llama automáticamente después de cargar el archivo fxml.
      */
     @FXML
     private void initialize() {
     }
 
     /**
-     * Sets the stage of this dialog.
+     * Establece la ventana de este diálogo.
      *
      * @param dialogStage
      */
@@ -44,7 +43,7 @@ public class PersonEditDialogController {
     }
 
     /**
-     * Sets the person to be edited in the dialog.
+     * Establece la persona que se va a editar en el cuadro de diálogo.
      *
      * @param person
      */
@@ -61,7 +60,7 @@ public class PersonEditDialogController {
     }
 
     /**
-     * Returns true if the user clicked OK, false otherwise.
+     * Devuelve true si el usuario hizo clic en "Aceptar", de lo contrario es false.
      *
      * @return
      */
@@ -70,7 +69,7 @@ public class PersonEditDialogController {
     }
 
     /**
-     * Called when the user clicks ok.
+     * Se llama cuando la usuario hace clic en "ok".
      */
     @FXML
     private void handleOk() {
@@ -88,7 +87,7 @@ public class PersonEditDialogController {
     }
 
     /**
-     * Called when the user clicks cancel.
+     * Se llama cuando el usuario hace clic en "cancelar".
      */
     @FXML
     private void handleCancel() {
@@ -96,43 +95,43 @@ public class PersonEditDialogController {
     }
 
     /**
-     * Validates the user input in the text fields.
+     * Valida lo que el usuario ha escrito en los campos de texto.
      *
-     * @return true if the input is valid
+     * @return devuelve true si los campos son validos
      */
     private boolean isInputValid() {
         String errorMessage = "";
 
         if (firstNameField.getText() == null || firstNameField.getText().length() == 0) {
-            errorMessage += "No valid first name!\n";
+            errorMessage += "Nombre no valido!\n";
         }
         if (lastNameField.getText() == null || lastNameField.getText().length() == 0) {
-            errorMessage += "No valid last name!\n";
+            errorMessage += "Apellido no valido!\n";
         }
         if (streetField.getText() == null || streetField.getText().length() == 0) {
-            errorMessage += "No valid street!\n";
+            errorMessage += "Calle no valida!\n";
         }
 
         if (postalCodeField.getText() == null || postalCodeField.getText().length() == 0) {
-            errorMessage += "No valid postal code!\n";
+            errorMessage += "Codigo postal invalido!\n";
         } else {
             // try to parse the postal code into an int.
             try {
                 Integer.parseInt(postalCodeField.getText());
             } catch (NumberFormatException e) {
-                errorMessage += "No valid postal code (must be an integer)!\n";
+                errorMessage += "Codigo postal no valido (tiene que ser un numero)!\n";
             }
         }
 
         if (cityField.getText() == null || cityField.getText().length() == 0) {
-            errorMessage += "No valid city!\n";
+            errorMessage += "Ciudad no valida!\n";
         }
 
         if (birthdayField.getText() == null || birthdayField.getText().length() == 0) {
-            errorMessage += "No valid birthday!\n";
+            errorMessage += "Fecha no valida!\n";
         } else {
             if (!DateUtil.validDate(birthdayField.getText())) {
-                errorMessage += "No valid birthday. Use the format dd.mm.yyyy!\n";
+                errorMessage += "Usa formato fecha!\n";
             }
         }
 
@@ -141,8 +140,8 @@ public class PersonEditDialogController {
         } else {
             // Show the error message.
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Invalid Fields");
-            alert.setHeaderText("Please correct invalid fields");
+            alert.setTitle("Campos erroneos.");
+            alert.setHeaderText("Por favor, corrige los campos erroneos.");
             alert.setContentText(errorMessage);
             alert.show();
 

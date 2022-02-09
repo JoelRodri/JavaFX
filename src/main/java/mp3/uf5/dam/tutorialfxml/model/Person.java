@@ -14,14 +14,14 @@ public class Person {
     private final ObjectProperty<LocalDate> birthday;
 
     /**
-     * Default constructor.
+     * Constructor predeterminado.
      */
     public Person() {
         this(null, null,null,null);
     }
 
     /**
-     * Constructor with some initial data.
+     * Constructor con información
      *
      * @param firstName
      * @param lastName
