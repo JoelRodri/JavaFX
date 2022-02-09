@@ -17,6 +17,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.w3c.dom.ls.LSOutput;
 import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
@@ -29,17 +30,25 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
 
 public class MainApp extends Application {
     private Stage primaryStage;
     private BorderPane rootLayout;
+    public static int[] puntuacion;
 
     private ObservableList<Person> personData = FXCollections.observableArrayList();
 
     public MainApp() {
         // Add some sample data
+        puntuacion = new int[12];
         readXML();
+
     }
+
+
 
     /**
      * Returns the data as an observable list of Persons.
@@ -154,8 +163,40 @@ public class MainApp extends Application {
         launch(args);
     }
 
+    public static int[] getpuntuacion (){
+        return puntuacion;
+    }
+
+    public void showGraphics() {
+        try {
+            // Load the fxml file and create a new stage for the popup.
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("graphic.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("LoL stats");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            dialogStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+    String date = "16/12/2016";
+    //MAY JUNE JULY AUGUST SEPTEMBER OCTOBER NOVEMBER DECEMBER
+
+    //convert String to LocalDate
+
 
     public void readXML(){
+
 
         try {
             // internet URL
@@ -174,7 +215,8 @@ public class MainApp extends Application {
             ex.printStackTrace();
         }
 
-        String FILENAME = "/home/dam2a-2021/IdeaProjects/tutorialJavaFX-main/cat.xml";
+        //String FILENAME = "/home/dam2a-2021/IdeaProjects/tutorialJavaFX-main/cat.xml";
+        String FILENAME = "C:\\Users\\Usuario\\IdeaProjects\\JavaFXAlan\\cat.xml";
         // Instantiate the Factory
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
@@ -203,6 +245,7 @@ public class MainApp extends Application {
 
                 Node node = list.item(temp);
 
+
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
 
                     Element element = (Element) node;
@@ -215,29 +258,77 @@ public class MainApp extends Application {
                     String lastname = element.getElementsByTagName("CARTELL").item(0).getTextContent();
                     String street = element.getElementsByTagName("IDIOMA_x0020_ORIGINAL").item(0).getTextContent();
                     String city = element.getElementsByTagName("ESTRENA").item(0).getTextContent();
+                    //String city = element.getElementsByTagName("PRIORITAT").item(0).getTextContent();
 
-                    //NodeList salaryNodeList = element.getElementsByTagName("salary");
-                    //String salary = salaryNodeList.item(0).getTextContent();
+                    String month = "00/00/00";
+                    try {
 
-                    // get salary's attribute
-                    //String currency = salaryNodeList.item(0).getAttributes().getNamedItem("currency").getTextContent();
+                            LocalDate localDate = LocalDate.parse(city, formatter);
+                            Month monthREAL = localDate.getMonth();
+                            month = monthREAL.toString();
+
+                    }catch (Exception e){
+
+                    }
+
+
+
 
                     System.out.println("Current Element :" + node.getNodeName());
                     // System.out.println("Staff Id : " + id);
                     System.out.println("First Name : " + firstname);
                     System.out.println("Last Name : " + lastname);
                     System.out.println("Idioma: " + street);
+                    System.out.println("fecha: " + city);
                     String imagen = "http://gencat.cat/llengua/cinema/"+ lastname;
+
+
 
                     personData.add(new Person(firstname, imagen , street, city));
                     //System.out.printf("Salary [Currency] : %,.2f [%s]%n%n", Float.parseFloat(salary), currency);
+
+//MAY JUNE JULY AUGUST SEPTEMBER OCTOBER NOVEMBER DECEMBER
+
+
+                    switch (month)
+                    {
+                        case "JANUARY": puntuacion[0] ++;
+                            break;
+                        case "FEBRUARY": puntuacion[1] ++;
+                            break;
+                        case "MARCH": puntuacion[2] ++;
+                            break;
+                        case "APRIL": puntuacion[3] ++;
+                            break;
+                        case "MAY": puntuacion[4] ++;
+                            break;
+                        case "JUNE": puntuacion[5] ++;
+                            break;
+                        case "JULY": puntuacion[6] ++;
+                            break;
+                        case "AUGUST": puntuacion[7] ++;
+                            break;
+                        case "SEPTEMBER": puntuacion[8] ++;
+                            break;
+                        case "OCTOBER": puntuacion[9] ++;
+                            break;
+                        case "NOVEMBER": puntuacion[10] ++;
+                            break;
+                        case "DECEMBER": puntuacion[11] ++;
+                            break;
+                        default:
+                            System.out.println("ERROR");
+                            break;
+                    }
                 }
-
-
             }
 
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
+
+        /*System.out.println("aqui");
+        System.out.println(month);
+        System.out.println("aqui");*/
     }
 }

@@ -70,6 +70,11 @@ public class PersonOverviewController {
         personTable.setItems(mainApp.getPersonData());
     }
 
+    @FXML
+    private void handleShowGraphics() {
+        mainApp.showGraphics();
+    }
+
     /**
      * Fills all text fields to show details about the person.
      * If the specified person is null, all text fields are cleared.
