@@ -52,8 +52,6 @@ public class RootLayoutControler {
      * Reset de la aplicación.b
      */
     public void resetFile(){
-
-
         mainApp.readXML();
     }
     /**
