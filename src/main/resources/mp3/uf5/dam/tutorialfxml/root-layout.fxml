@@ -9,7 +9,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="Archivo">
             <items>
-              <MenuItem mnemonicParsing="false" text="Cerrar" />
+              <MenuItem fx:id="cerrar" mnemonicParsing="false" onAction="#closeFile" text="Cerrar" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Estilo">
