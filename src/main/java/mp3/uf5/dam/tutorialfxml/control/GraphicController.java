@@ -28,14 +28,13 @@ public class GraphicController implements Initializable {
 
 
     /**
+     * Creamos un grafico
      * @param  url
      * @param resourceBundle
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         puntuacion = MainApp.getpuntuacion();
-
-
 
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
 

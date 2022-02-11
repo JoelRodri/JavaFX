@@ -7,10 +7,10 @@
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="Archivo">
+          <Menu mnemonicParsing="false" text="Herramientas">
             <items>
               <MenuItem fx:id="cerrar" mnemonicParsing="false" onAction="#closeFile" text="Cerrar" />
-                  <MenuItem mnemonicParsing="false" onAction="#resetFile" text="Reset" />
+                  <MenuItem mnemonicParsing="false" onAction="#mostrarGrafico" text="Grafico" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Estilo">
@@ -21,10 +21,10 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Ayuda">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#helpWeb" text="About" />
+              <MenuItem mnemonicParsing="false" onAction="#mostrarJavadoc" text="Javadoc" />
+                  <MenuItem mnemonicParsing="false" onAction="#mostrarXML" text="Mostrar xml peliculas" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="Grafico" />
         </menus>
       </MenuBar>
    </top>

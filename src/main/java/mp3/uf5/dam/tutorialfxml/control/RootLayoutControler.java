@@ -50,10 +50,10 @@ public class RootLayoutControler {
     }
 
     /**
-     * Reset de la aplicación.b
+     * Se ejecuta el metodo que muestra el grafico
      */
-    public void resetFile(){
-        mainApp.readXML();
+    public void mostrarGrafico(){
+        mainApp.showGraphics();
     }
     /**
      * Este metodo cierra la aplicación.
@@ -68,7 +68,14 @@ public class RootLayoutControler {
     /**
      * Abrimos una pagina web externa de ayuda (este javadoc).
      */
-    public void helpWeb(){
+    public void mostrarJavadoc(){
 
+    }
+
+    /**
+     * Muestra el XML del que se saca la información(cat.xml)
+     */
+    public void mostrarXML(){
+        mainApp.getHostServices().showDocument("C:\\Users\\swide\\IdeaProjects\\JavaFX\\cat.xml");
     }
 }

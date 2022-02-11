@@ -5,7 +5,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import mp3.uf5.dam.tutorialfxml.model.Movie;
-import mp3.uf5.dam.tutorialfxml.util.DateUtil;
 
 public class MovieEditDialogController {
     @FXML
@@ -13,13 +12,13 @@ public class MovieEditDialogController {
     @FXML
     private TextField año;
     @FXML
-    private TextField streetField;
+    private TextField director;
     @FXML
-    private TextField postalCodeField;
+    private TextField actores;
     @FXML
-    private TextField cityField;
+    private TextField idiomas;
     @FXML
-    private TextField birthdayField;
+    private TextField sipnosis;
 
 
     private Stage dialogStage;
@@ -47,15 +46,15 @@ public class MovieEditDialogController {
      *
      * @param movie
      */
-    public void setPerson(Movie movie) {
+    public void setMovie(Movie movie) {
         this.movie = movie;
 
         titulo.setText(movie.getTitulo());
         año.setText(movie.getAño());
-        streetField.setText(movie.getDirector());
-        postalCodeField.setText(movie.getActor());   //titulo, año , director, actor, idiomas, sinopsis, cartel,trailer
-        cityField.setText(movie.getIdiomas());
-        birthdayField.setText(movie.getSinopsis());
+        director.setText(movie.getDirector());
+        actores.setText(movie.getActor());   //titulo, año , director, actor, idiomas, sinopsis, cartel,trailer
+        idiomas.setText(movie.getIdiomas());
+        sipnosis.setText(movie.getSinopsis());
         //birthdayField.setPromptText("dd.mm.yyyy");
     }
 
@@ -76,10 +75,10 @@ public class MovieEditDialogController {
         if (isInputValid()) {
             movie.setTitulo(titulo.getText());
             movie.setAño(año.getText());
-            movie.setDirector(streetField.getText());
-            movie.setActor(postalCodeField.getText());//titulo, año , director, actor, idiomas, sinopsis, cartel,trailer
-            movie.setIdiomas(cityField.getText());
-            movie.setSinopsis(birthdayField.getText());
+            movie.setDirector(director.getText());
+            movie.setActor(actores.getText());//titulo, año , director, actor, idiomas, sinopsis, cartel,trailer
+            movie.setIdiomas(idiomas.getText());
+            movie.setSinopsis(sipnosis.getText());
             okClicked = true;
             dialogStage.close();
         }
@@ -107,19 +106,19 @@ public class MovieEditDialogController {
         if (año.getText() == null || año.getText().length() == 0) {
             errorMessage += "Apellido no valido!\n";
         }
-        if (streetField.getText() == null || streetField.getText().length() == 0) {
+        if (director.getText() == null || director.getText().length() == 0) {
             errorMessage += "Calle no valida!\n";
         }
 
-        if (postalCodeField.getText() == null || postalCodeField.getText().length() == 0) {
+        if (actores.getText() == null || actores.getText().length() == 0) {
             errorMessage += "Codigo postal invalido!\n";
         }
 
-        if (cityField.getText() == null || cityField.getText().length() == 0) {
+        if (idiomas.getText() == null || idiomas.getText().length() == 0) {
             errorMessage += "Ciudad no valida!\n";
         }
 
-        if (birthdayField.getText() == null || birthdayField.getText().length() == 0) {
+        if (sipnosis.getText() == null || sipnosis.getText().length() == 0) {
             errorMessage += "Fecha no valida!\n";
         }
 

@@ -4,25 +4,24 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane minHeight="500" minWidth="700" stylesheets="@../../../../WitheTheme.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mp3.uf5.dam.tutorialfxml.control.PersonOverviewController">
+<AnchorPane minHeight="500" minWidth="700" stylesheets="@../../../../WitheTheme.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mp3.uf5.dam.tutorialfxml.control.MovieOverviewController">
    <children>
       <SplitPane dividerPositions="0.29797979797979796, 0.5" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button layoutX="103.0" layoutY="458.0" mnemonicParsing="false" onAction="#handleShowGraphics" text="Grafico" />
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <ImageView fx:id="image" cache="true" cacheHint="SCALE" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="image" cache="true" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TableView fx:id="personTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="movieTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn fx:id="firstNameColumn" prefWidth="75.0" text="Catalogo" />
+                      <TableColumn fx:id="tituloColumn" prefWidth="75.0" text="Catalogo" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -53,20 +52,20 @@
                         <Label text="Actores" GridPane.rowIndex="3" />
                         <Label text="Idiomas" GridPane.rowIndex="4" />
                         <Label text="Sipnosis" GridPane.rowIndex="5" />
-                        <Label fx:id="firstNameLabel" styleClass="label-bright" text="Label" textOverrun="CLIP" GridPane.columnIndex="1" />
-                        <Label fx:id="lastNameLabel" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label fx:id="streetLabel" styleClass="label-bright" text="Label" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label fx:id="postalCodeLabel" styleClass="label-bright" text="Label" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label fx:id="cityLabel" styleClass="label-bright" text="Label" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Label fx:id="birthdayLabel" styleClass="label-bright" text="Label" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="tituloLabel" styleClass="label-bright" text="Label" textOverrun="CLIP" GridPane.columnIndex="1" />
+                        <Label fx:id="añoLabel" styleClass="label-bright" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="directorLabel" styleClass="label-bright" text="Label" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="actoresLabel" styleClass="label-bright" text="Label" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="idiomasLabel" styleClass="label-bright" text="Label" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="sipnosisLabel" styleClass="label-bright" text="Label" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                      </children>
                   </GridPane>
                   <HBox layoutX="129.0" layoutY="242.0" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#handleNewPerson" text="Nuevo" />
-                        <Button mnemonicParsing="false" onAction="#handleEditPerson" text="Editar" />
+                        <Button mnemonicParsing="false" onAction="#handleNewMovie" text="Nuevo" />
+                        <Button mnemonicParsing="false" onAction="#handleEditMovie" text="Editar" />
                         <Button mnemonicParsing="false" onAction="#showYoutube" text="Trailer" />
-                        <Button mnemonicParsing="false" onAction="#handleDeletePerson" text="Borrar" />
+                        <Button mnemonicParsing="false" onAction="#handleDeleteMovie" text="Borrar" />
                      </children>
                   </HBox>
                </children></AnchorPane>

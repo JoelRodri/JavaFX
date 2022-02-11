@@ -10,7 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import mp3.uf5.dam.tutorialfxml.control.MovieEditDialogController;
-import mp3.uf5.dam.tutorialfxml.control.PersonOverviewController;
+import mp3.uf5.dam.tutorialfxml.control.MovieOverviewController;
 import mp3.uf5.dam.tutorialfxml.control.RootLayoutControler;
 import mp3.uf5.dam.tutorialfxml.model.Movie;
 import org.w3c.dom.Document;
@@ -65,7 +65,7 @@ public class MainApp extends Application {
 
         initRootLayout();
 
-        showPersonOverview();
+        showMovieOverview();
     }
 
     /**
@@ -95,14 +95,16 @@ public class MainApp extends Application {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("person-overview.fxml"));
-            AnchorPane personOverview = (AnchorPane) loader.load();
+            // --------######@@@@@@@!!!!!!!!????-----------------  REFACTOR  ----------------------######@@@@@@@!!!!!!!!????--------------------------
+            // --------######@@@@@@@!!!!!!!!????-----------------  REFACTOR  ----------------------######@@@@@@@!!!!!!!!????--------------------------
+            loader.setLocation(MainApp.class.getResource("movie-overview.fxml"));
+            AnchorPane movieOverview = (AnchorPane) loader.load();
 
             // Set person overview into the center of root layout.
             rootLayout.setCenter(personOverview);
 
-            // Give the controller access to the main app.
-            PersonOverviewController controller = loader.getController();
+
+            MovieOverviewController controller = loader.getController();
             controller.setMainApp(this);
 
         } catch (IOException e) {
@@ -118,16 +120,16 @@ public class MainApp extends Application {
      * @param movie the person object to be edited
      * @return true if the user clicked OK, false otherwise.
      */
-    public boolean showPersonEditDialog(Movie movie) {
+    public boolean showMovieEditDialog(Movie movie) {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("person-editDialog.fxml"));
+            loader.setLocation(MainApp.class.getResource("movie-editDialog.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
 
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Edit Person");
+            dialogStage.setTitle("Edit Movie");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
@@ -136,7 +138,7 @@ public class MainApp extends Application {
             // Set the person into the controller.
             MovieEditDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
-            controller.setPerson(movie);
+            controller.setMovie(movie);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
@@ -251,16 +253,6 @@ public class MainApp extends Application {
 
                     Element element = (Element) node;
 
-                    // get staff's attribute
-                    //String id = element.getAttribute("id");
-
-                    // get text
-                    //TITOL ESTRENA DIRECCIO INTERPRETS IDIOMA_x0020_ORIGINAL SINOPSI CARTELL TRAILER
-                    String firstname = element.getElementsByTagName("TITOL").item(0).getTextContent();
-                    String lastname = element.getElementsByTagName("CARTELL").item(0).getTextContent();
-                    String street = element.getElementsByTagName("IDIOMA_x0020_ORIGINAL").item(0).getTextContent();
-                    String city = element.getElementsByTagName("ESTRENA").item(0).getTextContent();
-
                     String titulo = element.getElementsByTagName("TITOL").item(0).getTextContent();
                     String año = element.getElementsByTagName("ESTRENA").item(0).getTextContent();
                     String director = element.getElementsByTagName("DIRECCIO").item(0).getTextContent();
@@ -289,18 +281,14 @@ public class MainApp extends Application {
 
                     System.out.println("Current Element :" + node.getNodeName());
                     // System.out.println("Staff Id : " + id);
-                    System.out.println("First Name : " + firstname);
-                    System.out.println("Last Name : " + lastname);
-                    System.out.println("Idioma: " + street);
-                    System.out.println("fecha: " + city);
-                    String imagen = "http://gencat.cat/llengua/cinema/"+ lastname;
+                    System.out.println("Titulo : " + titulo);
+                    System.out.println("Año : " + año);
+                    System.out.println("Director: " + director);
+                    System.out.println("Actores: " + actor);
+                    String imagen = "http://gencat.cat/llengua/cinema/"+ cartel;
 
 
                     movieData.add(new Movie(titulo, año , director, actor, idiomas, sinopsis, cartel,trailer));
-
-                    //personData.add(new Person(firstname, imagen , street, city));
-
-//MAY JUNE JULY AUGUST SEPTEMBER OCTOBER NOVEMBER DECEMBER
 
 
                     switch (month)
@@ -339,9 +327,5 @@ public class MainApp extends Application {
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
-
-        /*System.out.println("aqui");
-        System.out.println(month);
-        System.out.println("aqui");*/
     }
 }

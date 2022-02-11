@@ -7,26 +7,26 @@ import javafx.scene.image.ImageView;
 import mp3.uf5.dam.tutorialfxml.MainApp;
 import mp3.uf5.dam.tutorialfxml.model.Movie;
 
-public class PersonOverviewController {
+public class MovieOverviewController {
     @FXML
-    private TableView<Movie> personTable;
+    private TableView<Movie> movieTable;
     @FXML
-    private TableColumn<Movie, String> firstNameColumn;
+    private TableColumn<Movie, String> tituloColumn;
     @FXML
     private TableColumn<Movie, String> lastNameColumn;
 
     @FXML
-    private Label firstNameLabel;
+    private Label tituloLabel;
     @FXML
-    private Label lastNameLabel;
+    private Label añoLabel;
     @FXML
-    private Label streetLabel;
+    private Label directorLabel;
     @FXML
-    private Label postalCodeLabel;
+    private Label actoresLabel;
     @FXML
-    private Label cityLabel;
+    private Label idiomasLabel;
     @FXML
-    private Label birthdayLabel;
+    private Label sipnosisLabel;
     @FXML
     private ImageView image;
 
@@ -40,7 +40,7 @@ public class PersonOverviewController {
 
     String universal;
 
-    public PersonOverviewController() {
+    public MovieOverviewController() {
     }
 
     /**
@@ -50,14 +50,14 @@ public class PersonOverviewController {
     @FXML
     private void initialize() {
         // Initialize the person table with the two columns.
-        firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().tituloProperty());
+        tituloColumn.setCellValueFactory(cellData -> cellData.getValue().tituloProperty());
 
         // Clear person details.
-        showPersonDetails(null);
+        showMovieDetails(null);
 
         // Listen for selection changes and show the person details when changed.
-        personTable.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> showPersonDetails(newValue));
+        movieTable.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> showMovieDetails(newValue));
     }
 
     /**
@@ -69,14 +69,8 @@ public class PersonOverviewController {
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
         // Add observable list data to the table
-        personTable.setItems(mainApp.getPersonData());
+        movieTable.setItems(mainApp.getMovieData());
 
-    }
-
-
-    @FXML
-    private void handleShowGraphics() {
-        mainApp.showGraphics();
     }
 
     @FXML
@@ -91,15 +85,15 @@ public class PersonOverviewController {
      *
      * @param movie la persona o null
      */
-    private void showPersonDetails(Movie movie) {
+    private void showMovieDetails(Movie movie) {
         if (movie != null) {
             // Fill the labels with info from the person object.
-            firstNameLabel.setText(movie.getTitulo());
-            lastNameLabel.setText(movie.getAño());
-            streetLabel.setText(movie.getDirector());
-            postalCodeLabel.setText(movie.getActor());  //titulo, año , director, actor, idiomas, sinopsis, cartel,trailer
-            cityLabel.setText(movie.getIdiomas());
-            birthdayLabel.setText(movie.getSinopsis());
+            tituloLabel.setText(movie.getTitulo());
+            añoLabel.setText(movie.getAño());
+            directorLabel.setText(movie.getDirector());
+            actoresLabel.setText(movie.getActor());  //titulo, año , director, actor, idiomas, sinopsis, cartel,trailer
+            idiomasLabel.setText(movie.getIdiomas());
+            sipnosisLabel.setText(movie.getSinopsis());
 
             image.setImage(new Image(movie.getCartel()));
 
@@ -109,12 +103,12 @@ public class PersonOverviewController {
 
         } else {
             // Person is null, remove all the text.
-            firstNameLabel.setText("");
-            lastNameLabel.setText("");
-            streetLabel.setText("");
-            postalCodeLabel.setText("");
-            cityLabel.setText("");
-            birthdayLabel.setText("");
+            tituloLabel.setText("");
+            añoLabel.setText("");
+            directorLabel.setText("");
+            actoresLabel.setText("");
+            idiomasLabel.setText("");
+            sipnosisLabel.setText("");
         }
     }
 
@@ -122,10 +116,10 @@ public class PersonOverviewController {
      * Se llama cuando el usuario hace clic en el botón Eliminar.
      */
     @FXML
-    private void handleDeletePerson() {
-        int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
+    private void handleDeleteMovie() {
+        int selectedIndex = movieTable.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
-            personTable.getItems().remove(selectedIndex);
+            movieTable.getItems().remove(selectedIndex);
         } else {
             // Nothing selected.
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -148,11 +142,11 @@ public class PersonOverviewController {
      */
 
     @FXML
-    private void handleNewPerson() {
+    private void handleNewMovie() {
         Movie tempMovie = new Movie();
-        boolean okClicked = mainApp.showPersonEditDialog(tempMovie);
+        boolean okClicked = mainApp.showMovieEditDialog(tempMovie);
         if (okClicked) {
-            mainApp.getPersonData().add(tempMovie);
+            mainApp.getMovieData().add(tempMovie);
         }
     }
 
@@ -161,12 +155,12 @@ public class PersonOverviewController {
      * Se abre una ventana para editar los detalles de la pelicula.
      */
     @FXML
-    private void handleEditPerson() {
-        Movie selectedMovie = personTable.getSelectionModel().getSelectedItem();
+    private void handleEditMovie() {
+        Movie selectedMovie = movieTable.getSelectionModel().getSelectedItem();
         if (selectedMovie != null) {
-            boolean okClicked = mainApp.showPersonEditDialog(selectedMovie);
+            boolean okClicked = mainApp.showMovieEditDialog(selectedMovie);
             if (okClicked) {
-                showPersonDetails(selectedMovie);
+                showMovieDetails(selectedMovie);
             }
 
         } else {
