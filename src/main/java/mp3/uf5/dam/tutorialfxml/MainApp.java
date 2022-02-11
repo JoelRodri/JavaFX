@@ -254,16 +254,28 @@ public class MainApp extends Application {
                     //String id = element.getAttribute("id");
 
                     // get text
+                    //TITOL ESTRENA DIRECCIO INTERPRETS IDIOMA_x0020_ORIGINAL SINOPSI CARTELL TRAILER
                     String firstname = element.getElementsByTagName("TITOL").item(0).getTextContent();
                     String lastname = element.getElementsByTagName("CARTELL").item(0).getTextContent();
                     String street = element.getElementsByTagName("IDIOMA_x0020_ORIGINAL").item(0).getTextContent();
                     String city = element.getElementsByTagName("ESTRENA").item(0).getTextContent();
-                    //String city = element.getElementsByTagName("PRIORITAT").item(0).getTextContent();
+
+                    String titulo = element.getElementsByTagName("TITOL").item(0).getTextContent();
+                    String año = element.getElementsByTagName("ESTRENA").item(0).getTextContent();
+                    String director = element.getElementsByTagName("DIRECCIO").item(0).getTextContent();
+                    String actor = element.getElementsByTagName("INTERPRETS").item(0).getTextContent();
+                    String idiomas = element.getElementsByTagName("IDIOMA_x0020_ORIGINAL").item(0).getTextContent();
+                    String sinopsis = element.getElementsByTagName("SINOPSI").item(0).getTextContent();
+                    String cartel = element.getElementsByTagName("CARTELL").item(0).getTextContent();
+                    String trailer = element.getElementsByTagName("TRAILER").item(0).getTextContent();
+
+                    cartel = "http://gencat.cat/llengua/cinema/" + cartel;
+                    trailer = "https://www.youtube.com/watch?v=" + trailer;
+
 
                     String month = "00/00/00";
                     try {
-
-                            LocalDate localDate = LocalDate.parse(city, formatter);
+                            LocalDate localDate = LocalDate.parse(año, formatter);
                             Month monthREAL = localDate.getMonth();
                             month = monthREAL.toString();
 
@@ -283,9 +295,9 @@ public class MainApp extends Application {
                     String imagen = "http://gencat.cat/llengua/cinema/"+ lastname;
 
 
+                    personData.add(new Person(titulo, año , director, actor, idiomas, sinopsis, cartel,trailer));
 
-                    personData.add(new Person(firstname, imagen , street, city));
-                    //System.out.printf("Salary [Currency] : %,.2f [%s]%n%n", Float.parseFloat(salary), currency);
+                    //personData.add(new Person(firstname, imagen , street, city));
 
 //MAY JUNE JULY AUGUST SEPTEMBER OCTOBER NOVEMBER DECEMBER
 

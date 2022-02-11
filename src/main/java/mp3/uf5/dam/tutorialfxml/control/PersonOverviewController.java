@@ -48,7 +48,7 @@ public class PersonOverviewController {
     @FXML
     private void initialize() {
         // Initialize the person table with the two columns.
-        firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
+        firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().tituloProperty());
 
         // Clear person details.
         showPersonDetails(null);
@@ -69,11 +69,18 @@ public class PersonOverviewController {
         personTable.setItems(mainApp.getPersonData());
     }
 
+
     @FXML
     private void handleShowGraphics() {
         mainApp.showGraphics();
     }
 
+    @FXML
+    private void showYoutube() {
+        //String url = person.getStreet();
+        mainApp.getHostServices().showDocument("https://www.youtube.com/watch?v=Wq4Y7ztznKc");
+
+    }
     /**
      * Rellena todos los campos de texto para mostrar detalles sobre la persona.
      * Si la persona especificada es nula, se borran todos los campos de texto.
@@ -83,13 +90,16 @@ public class PersonOverviewController {
     private void showPersonDetails(Person person) {
         if (person != null) {
             // Fill the labels with info from the person object.
-            firstNameLabel.setText(person.getFirstName());
-            lastNameLabel.setText(person.getLastName());
-            streetLabel.setText(person.getStreet());
-            postalCodeLabel.setText(Integer.toString(person.getPostalCode()));
-            cityLabel.setText(person.getCity());
-            birthdayLabel.setText(DateUtil.format(person.getBirthday()));
-            image.setImage(new Image(person.getLastName()));
+            firstNameLabel.setText(person.getTitulo());
+            lastNameLabel.setText(person.getAño());
+            streetLabel.setText(person.getDirector());
+            postalCodeLabel.setText(person.getActor());  //titulo, año , director, actor, idiomas, sinopsis, cartel,trailer
+            cityLabel.setText(person.getIdiomas());
+            birthdayLabel.setText(person.getSinopsis());
+
+            image.setImage(new Image(person.getCartel()));
+            String url = person.getTrailer();
+            mainApp.getHostServices().showDocument(url);
 
         } else {
             // Person is null, remove all the text.
@@ -130,6 +140,7 @@ public class PersonOverviewController {
      * Se llama cuando el usuario hace clic en el botón nuevo.
      * Se abre una ventana para editar los detalles de una nueva pelicula.
      */
+
     @FXML
     private void handleNewPerson() {
         Person tempPerson = new Person();

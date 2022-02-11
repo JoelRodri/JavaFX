@@ -61,7 +61,7 @@
                      <children>
                         <Button mnemonicParsing="false" onAction="#handleNewPerson" text="Trailer" />
                         <Button mnemonicParsing="false" onAction="#handleEditPerson" text="Editar" />
-                        <Button mnemonicParsing="false" text="Button" />
+                        <Button mnemonicParsing="false" onAction="#showYoutube" text="Button" />
                         <Button mnemonicParsing="false" onAction="#handleDeletePerson" text="Borrar" />
                      </children>
                   </HBox>

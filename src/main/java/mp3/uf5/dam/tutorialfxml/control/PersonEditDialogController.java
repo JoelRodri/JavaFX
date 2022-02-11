@@ -50,13 +50,13 @@ public class PersonEditDialogController {
     public void setPerson(Person person) {
         this.person = person;
 
-        firstNameField.setText(person.getFirstName());
-        lastNameField.setText(person.getLastName());
-        streetField.setText(person.getStreet());
-        postalCodeField.setText(Integer.toString(person.getPostalCode()));
-        cityField.setText(person.getCity());
-        birthdayField.setText(DateUtil.format(person.getBirthday()));
-        birthdayField.setPromptText("dd.mm.yyyy");
+        firstNameField.setText(person.getTitulo());
+        lastNameField.setText(person.getAño());
+        streetField.setText(person.getDirector());
+        postalCodeField.setText(person.getActor());   //titulo, año , director, actor, idiomas, sinopsis, cartel,trailer
+        cityField.setText(person.getIdiomas());
+        birthdayField.setText(person.getSinopsis());
+        //birthdayField.setPromptText("dd.mm.yyyy");
     }
 
     /**
@@ -74,13 +74,12 @@ public class PersonEditDialogController {
     @FXML
     private void handleOk() {
         if (isInputValid()) {
-            person.setFirstName(firstNameField.getText());
-            person.setLastName(lastNameField.getText());
-            person.setStreet(streetField.getText());
-            person.setPostalCode(Integer.parseInt(postalCodeField.getText()));
-            person.setCity(cityField.getText());
-            person.setBirthday(DateUtil.parse(birthdayField.getText()));
-
+            person.setTitulo(firstNameField.getText());
+            person.setAño(lastNameField.getText());
+            person.setDirector(streetField.getText());
+            person.setActor(postalCodeField.getText());//titulo, año , director, actor, idiomas, sinopsis, cartel,trailer
+            person.setIdiomas(cityField.getText());
+            person.setSinopsis(birthdayField.getText());
             okClicked = true;
             dialogStage.close();
         }
