@@ -69,7 +69,7 @@ public class RootLayoutControler {
      * Abrimos una pagina web externa de ayuda (este javadoc).
      */
     public void mostrarJavadoc(){
-                mainApp.getHostServices().showDocument("http://gencat.cat/llengua/cinema/provacin.xml");
+                mainApp.getHostServices().showDocument("https://joelrodri.github.io/JavaFX/");
     }
 
     /**
