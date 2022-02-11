@@ -34,18 +34,18 @@ public class GraphicController implements Initializable {
                 new PieChart.Data("TANQUE",stats[4]),
                 new PieChart.Data("APOYO",stats[5]));*/
 
-                new PieChart.Data("E",puntuacion[0]),
-                new PieChart.Data("F",puntuacion[1]),
-                new PieChart.Data("MR",puntuacion[2]),
-                new PieChart.Data("AB",puntuacion[3]),
-                new PieChart.Data("MY",puntuacion[4]),
-                new PieChart.Data("JN",puntuacion[5]),
-                new PieChart.Data("JL",puntuacion[6]),
-                new PieChart.Data("AG",puntuacion[7]),
-                new PieChart.Data("S",puntuacion[8]),
-                new PieChart.Data("O",puntuacion[9]),
-                new PieChart.Data("N",puntuacion[10]),
-                new PieChart.Data("D",puntuacion[11]));
+                new PieChart.Data("Enero",puntuacion[0]),
+                new PieChart.Data("Febrero",puntuacion[1]),
+                new PieChart.Data("Marzo",puntuacion[2]),
+                new PieChart.Data("Abril",puntuacion[3]),
+                new PieChart.Data("Mayo",puntuacion[4]),
+                new PieChart.Data("Junio",puntuacion[5]),
+                new PieChart.Data("Julio",puntuacion[6]),
+                new PieChart.Data("Agosto",puntuacion[7]),
+                new PieChart.Data("Septiembre",puntuacion[8]),
+                new PieChart.Data("Octubre",puntuacion[9]),
+                new PieChart.Data("Noviembre",puntuacion[10]),
+                new PieChart.Data("Diciembre",puntuacion[11]));
 
         pieChartData.forEach(data ->
                 data.nameProperty().bind(

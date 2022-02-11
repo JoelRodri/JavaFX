@@ -175,7 +175,7 @@ public class MainApp extends Application {
             loader.setLocation(MainApp.class.getResource("graphic.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("LoL stats");
+            dialogStage.setTitle("Numero de estrenos");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
