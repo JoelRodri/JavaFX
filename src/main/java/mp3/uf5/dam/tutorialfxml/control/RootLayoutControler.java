@@ -2,6 +2,7 @@ package mp3.uf5.dam.tutorialfxml.control;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import mp3.uf5.dam.tutorialfxml.MainApp;
@@ -58,6 +59,11 @@ public class RootLayoutControler {
      * Este metodo cierra la aplicación.
      */
     public void closeFile(){Platform.exit();}
+
+    @FXML
+    private void handleShowGraphics() {
+        mainApp.showGraphics();
+    }
 
     /**
      * Abrimos una pagina web externa de ayuda (este javadoc).

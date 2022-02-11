@@ -38,6 +38,9 @@ public class PersonOverviewController {
      * El construcor.
      * El constructor se llama al iniciar el metodo initialize().
      */
+
+    String universal;
+
     public PersonOverviewController() {
     }
 
@@ -62,11 +65,13 @@ public class PersonOverviewController {
      * Es llamado por la aplicación principal para devolver una referencia a sí mismo.
      * @param mainApp
      */
+
+
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
-
         // Add observable list data to the table
         personTable.setItems(mainApp.getPersonData());
+
     }
 
 
@@ -78,7 +83,7 @@ public class PersonOverviewController {
     @FXML
     private void showYoutube() {
         //String url = person.getStreet();
-        mainApp.getHostServices().showDocument("https://www.youtube.com/watch?v=Wq4Y7ztznKc");
+        mainApp.getHostServices().showDocument(universal);
 
     }
     /**
@@ -98,8 +103,10 @@ public class PersonOverviewController {
             birthdayLabel.setText(person.getSinopsis());
 
             image.setImage(new Image(person.getCartel()));
+
             String url = person.getTrailer();
-            mainApp.getHostServices().showDocument(url);
+            universal = url;
+            //mainApp.getHostServices().showDocument(url);
 
         } else {
             // Person is null, remove all the text.

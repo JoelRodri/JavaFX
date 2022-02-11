@@ -24,6 +24,7 @@
               <MenuItem mnemonicParsing="false" onAction="#helpWeb" text="About" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Grafico" />
         </menus>
       </MenuBar>
    </top>

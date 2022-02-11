@@ -216,7 +216,9 @@ public class MainApp extends Application {
         }
 
         //String FILENAME = "/home/dam2a-2021/IdeaProjects/tutorialJavaFX-main/cat.xml";
-        String FILENAME = "C:\\Users\\Usuario\\IdeaProjects\\JavaFXAlan\\cat.xml";
+        //String FILENAME = "C:\\Users\\Usuario\\IdeaProjects\\JavaFXAlan\\cat.xml";
+        String FILENAME = "cat.xml";
+
         // Instantiate the Factory
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
