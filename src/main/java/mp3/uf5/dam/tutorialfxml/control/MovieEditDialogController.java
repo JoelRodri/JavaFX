@@ -6,6 +6,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import mp3.uf5.dam.tutorialfxml.model.Movie;
 
+/**
+ * Clase para mostrar una ventana con el editor de  crear/editar pelicula
+ */
 public class MovieEditDialogController {
     @FXML
     private TextField titulo;

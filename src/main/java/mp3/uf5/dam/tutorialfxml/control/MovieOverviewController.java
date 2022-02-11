@@ -7,6 +7,9 @@ import javafx.scene.image.ImageView;
 import mp3.uf5.dam.tutorialfxml.MainApp;
 import mp3.uf5.dam.tutorialfxml.model.Movie;
 
+/**
+ * Esta calse nos ayudara a controlar el movie-overview.fxml, para mostrar en una tabla todas las peliculas.
+ */
 public class MovieOverviewController {
     @FXML
     private TableView<Movie> movieTable;
