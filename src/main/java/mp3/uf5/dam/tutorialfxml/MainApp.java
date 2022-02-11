@@ -33,13 +33,27 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 
+
+/**
+ *  Esta calse se encargara de iniciar  main principal de la aplicacion
+ */
+
 public class MainApp extends Application {
+
+    /**
+     * Creamos las variables de la clase.
+     */
+
     private Stage primaryStage;
     private BorderPane rootLayout;
     public static int[] puntuacion;
-
     private ObservableList<Movie> movieData = FXCollections.observableArrayList();
 
+
+
+    /**
+     * Un constructor que iniciara la aplicacion con un array de 12 meses del año y un metedo que leera y cargara un xml
+     */
     public MainApp() {
         // Add some sample data
         puntuacion = new int[12];
@@ -50,18 +64,22 @@ public class MainApp extends Application {
 
 
     /**
-     * Returns the data as an observable list of Persons.
-     *
-     * @return ObservableList<Person>
+     * Metodo getMovieData  es un getter que devuelve los datos de la pelicula
+     * @return movieData los datos de la peli
      */
-    public ObservableList<Movie> getPersonData() {
+
+    public ObservableList<Movie> getMovieData() {
         return movieData;
     }
 
+    /**
+     * Metodo start que prepara el escenario principal y lo muestra con el titulo de la App
+     * @param primaryStage le pasamos un Escenario
+     */
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("AddressApp");
+        this.primaryStage.setTitle("Movie Maker");
 
         initRootLayout();
 
@@ -69,7 +87,7 @@ public class MainApp extends Application {
     }
 
     /**
-     * Initializes the root layout.
+     * Metodo initRootLayout carga y muestra el root-layout.fxml
      */
     public void initRootLayout() {
         try {
@@ -89,19 +107,22 @@ public class MainApp extends Application {
     }
 
     /**
-     * Shows the person overview inside the root layout.
+     * Metodo showMoiveOverview muestra la pelicula dentro del movie-overview layout
      */
-    public void showPersonOverview() {
+    // --------######@@@@@@@!!!!!!!!????-----------------  REFACTOR  ----------------------######@@@@@@@!!!!!!!!????--------------------------
+    // --------######@@@@@@@!!!!!!!!????-----------------  REFACTOR  ----------------------######@@@@@@@!!!!!!!!????--------------------------
+    // --------######@@@@@@@!!!!!!!!????-----------------  REFACTOR  ----------------------######@@@@@@@!!!!!!!!????--------------------------
+    public void showMovieOverview() {
         try {
-            // Load person overview.
+
             FXMLLoader loader = new FXMLLoader();
             // --------######@@@@@@@!!!!!!!!????-----------------  REFACTOR  ----------------------######@@@@@@@!!!!!!!!????--------------------------
             // --------######@@@@@@@!!!!!!!!????-----------------  REFACTOR  ----------------------######@@@@@@@!!!!!!!!????--------------------------
             loader.setLocation(MainApp.class.getResource("movie-overview.fxml"));
             AnchorPane movieOverview = (AnchorPane) loader.load();
 
-            // Set person overview into the center of root layout.
-            rootLayout.setCenter(personOverview);
+
+            rootLayout.setCenter(movieOverview);
 
 
             MovieOverviewController controller = loader.getController();
@@ -117,17 +138,19 @@ public class MainApp extends Application {
      * clicks OK, the changes are saved into the provided person object and true
      * is returned.
      *
-     * @param movie the person object to be edited
-     * @return true if the user clicked OK, false otherwise.
+     * Metodo showMovieEditDialog carga y muestra el movie-editDialog.fxml. Gracias a este metodo seremos capaces de editar los datos de una pelicul
+     *
+     * @param movie la pelicula selecionada
+     * @return true devuelve true si seleciona una pelicula
      */
     public boolean showMovieEditDialog(Movie movie) {
         try {
-            // Load the fxml file and create a new stage for the popup dialog.
+
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("movie-editDialog.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
 
-            // Create the dialog Stage.
+
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Edit Movie");
             dialogStage.initModality(Modality.WINDOW_MODAL);
@@ -135,12 +158,12 @@ public class MainApp extends Application {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
-            // Set the person into the controller.
+
             MovieEditDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setMovie(movie);
 
-            // Show the dialog and wait until the user closes it
+
             dialogStage.showAndWait();
 
             return controller.isOkClicked();
@@ -151,23 +174,34 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns the main stage.
+     * Metodo getPrimaryStage es un getter que devuelve el escenario principal
      *
-     * @return Stage
+     * @return primaryStage el Escenario
      */
     public Stage getPrimaryStage() {
         return primaryStage;
     }
 
-
+    /**
+     * Metodo main inicia el codigo
+     */
     public static void main(String[] args) {
         launch(args);
     }
 
+    /**
+     * Metodo getpuntuacion es un getter que devuelve el array puntuacion que es total del numero de veces de peliculas por mes
+     *
+     * @return primaryStage el Escenario
+     */
     public static int[] getpuntuacion (){
         return puntuacion;
     }
 
+
+    /**
+     * Metodo showGraphics carga el archivo graphic.fxml y cree una nueva ventana a modo de po
+     */
     public void showGraphics() {
         try {
             // Load the fxml file and create a new stage for the popup.
@@ -189,26 +223,26 @@ public class MainApp extends Application {
         }
     }
 
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-    String date = "16/12/2016";
-    //MAY JUNE JULY AUGUST SEPTEMBER OCTOBER NOVEMBER DECEMBER
+    /**
+     * Metodo readXML descarga de una url un xml y lo lee y guarda los datos deseados
+     */
 
-    //convert String to LocalDate
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
 
 
     public void readXML(){
 
 
         try {
-            // internet URL
+
             URL url = new URL("http://gencat.cat/llengua/cinema/provacin.xml");
 
-            // download and save image
+
             ReadableByteChannel rbc = Channels.newChannel(url.openStream());
             FileOutputStream fos = new FileOutputStream("cat.xml");
             fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
 
-            //close writers
+
             fos.close();
             rbc.close();
 
@@ -216,20 +250,18 @@ public class MainApp extends Application {
             ex.printStackTrace();
         }
 
-        //String FILENAME = "/home/dam2a-2021/IdeaProjects/tutorialJavaFX-main/cat.xml";
-        //String FILENAME = "C:\\Users\\Usuario\\IdeaProjects\\JavaFXAlan\\cat.xml";
+
         String FILENAME = "cat.xml";
 
-        // Instantiate the Factory
+
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
         try {
 
-            // optional, but recommended
-            // process XML securely, avoid attacks like XML External Entities (XXE)
+
             dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
 
-            // parse XML file
+
             DocumentBuilder db = dbf.newDocumentBuilder();
 
             Document doc = db.parse(new File(FILENAME));

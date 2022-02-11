@@ -2,15 +2,14 @@ package mp3.uf5.dam.tutorialfxml.model;
 
 import javafx.beans.property.*;
 
+/**
+ * Esta clase se encarga de guardar los datos de cada pelicula
+ */
 public class Movie {
 
-    /*private final StringProperty firstName;
-    private final StringProperty lastName;
-    private final StringProperty street;
-    private final IntegerProperty postalCode;
-    private final StringProperty city;
-    private final ObjectProperty<LocalDate> birthday;*/
-
+    /**
+     * Constructor predeterminado
+     */
 
     private final StringProperty titulo;
     private final StringProperty año;
@@ -22,19 +21,16 @@ public class Movie {
     private final StringProperty trailer;
 
     /**
-     * Constructor predeterminado.
+     * Constructor predeterminado que inicializa pelicula con los datos en nulo
      */
-    /*public Person() {
-        this(null,null,null,null);
-    }*/
-
-    /*public Person(){
-        this(null,null,null,null);
-    }*/
 
     public Movie(){
         this(null,null,null,null,null,null,null,null);
     }
+
+    /**
+     * Constructor que recibe los datos para guardarlos
+     */
 
     public Movie(String titulo, String año, String director, String actor, String idiomas, String sinopsis, String cartel, String trailer) {
         this.titulo = new SimpleStringProperty(titulo);
@@ -47,6 +43,9 @@ public class Movie {
         this.trailer = new SimpleStringProperty(trailer);
     }
 
+    /**
+     * Getters y Setters de la pelicula
+     */
     public String getTitulo() {
         return titulo.get();
     }

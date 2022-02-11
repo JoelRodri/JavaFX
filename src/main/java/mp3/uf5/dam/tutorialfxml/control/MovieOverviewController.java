@@ -52,13 +52,13 @@ public class MovieOverviewController {
      */
     @FXML
     private void initialize() {
-        // Initialize the person table with the two columns.
+
         tituloColumn.setCellValueFactory(cellData -> cellData.getValue().tituloProperty());
 
-        // Clear person details.
+
         showMovieDetails(null);
 
-        // Listen for selection changes and show the person details when changed.
+
         movieTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showMovieDetails(newValue));
     }
