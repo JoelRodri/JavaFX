@@ -4,14 +4,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import mp3.uf5.dam.tutorialfxml.model.Person;
+import mp3.uf5.dam.tutorialfxml.model.Movie;
 import mp3.uf5.dam.tutorialfxml.util.DateUtil;
 
-public class PersonEditDialogController {
+public class MovieEditDialogController {
     @FXML
-    private TextField firstNameField;
+    private TextField titulo;
     @FXML
-    private TextField lastNameField;
+    private TextField año;
     @FXML
     private TextField streetField;
     @FXML
@@ -23,7 +23,7 @@ public class PersonEditDialogController {
 
 
     private Stage dialogStage;
-    private Person person;
+    private Movie movie;
     private boolean okClicked = false;
 
     /**
@@ -45,17 +45,17 @@ public class PersonEditDialogController {
     /**
      * Establece la persona que se va a editar en el cuadro de diálogo.
      *
-     * @param person
+     * @param movie
      */
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setPerson(Movie movie) {
+        this.movie = movie;
 
-        firstNameField.setText(person.getTitulo());
-        lastNameField.setText(person.getAño());
-        streetField.setText(person.getDirector());
-        postalCodeField.setText(person.getActor());   //titulo, año , director, actor, idiomas, sinopsis, cartel,trailer
-        cityField.setText(person.getIdiomas());
-        birthdayField.setText(person.getSinopsis());
+        titulo.setText(movie.getTitulo());
+        año.setText(movie.getAño());
+        streetField.setText(movie.getDirector());
+        postalCodeField.setText(movie.getActor());   //titulo, año , director, actor, idiomas, sinopsis, cartel,trailer
+        cityField.setText(movie.getIdiomas());
+        birthdayField.setText(movie.getSinopsis());
         //birthdayField.setPromptText("dd.mm.yyyy");
     }
 
@@ -74,12 +74,12 @@ public class PersonEditDialogController {
     @FXML
     private void handleOk() {
         if (isInputValid()) {
-            person.setTitulo(firstNameField.getText());
-            person.setAño(lastNameField.getText());
-            person.setDirector(streetField.getText());
-            person.setActor(postalCodeField.getText());//titulo, año , director, actor, idiomas, sinopsis, cartel,trailer
-            person.setIdiomas(cityField.getText());
-            person.setSinopsis(birthdayField.getText());
+            movie.setTitulo(titulo.getText());
+            movie.setAño(año.getText());
+            movie.setDirector(streetField.getText());
+            movie.setActor(postalCodeField.getText());//titulo, año , director, actor, idiomas, sinopsis, cartel,trailer
+            movie.setIdiomas(cityField.getText());
+            movie.setSinopsis(birthdayField.getText());
             okClicked = true;
             dialogStage.close();
         }
@@ -101,10 +101,10 @@ public class PersonEditDialogController {
     private boolean isInputValid() {
         String errorMessage = "";
 
-        if (firstNameField.getText() == null || firstNameField.getText().length() == 0) {
+        if (titulo.getText() == null || titulo.getText().length() == 0) {
             errorMessage += "Nombre no valido!\n";
         }
-        if (lastNameField.getText() == null || lastNameField.getText().length() == 0) {
+        if (año.getText() == null || año.getText().length() == 0) {
             errorMessage += "Apellido no valido!\n";
         }
         if (streetField.getText() == null || streetField.getText().length() == 0) {
@@ -113,13 +113,6 @@ public class PersonEditDialogController {
 
         if (postalCodeField.getText() == null || postalCodeField.getText().length() == 0) {
             errorMessage += "Codigo postal invalido!\n";
-        } else {
-            // try to parse the postal code into an int.
-            try {
-                Integer.parseInt(postalCodeField.getText());
-            } catch (NumberFormatException e) {
-                errorMessage += "Codigo postal no valido (tiene que ser un numero)!\n";
-            }
         }
 
         if (cityField.getText() == null || cityField.getText().length() == 0) {
@@ -128,10 +121,6 @@ public class PersonEditDialogController {
 
         if (birthdayField.getText() == null || birthdayField.getText().length() == 0) {
             errorMessage += "Fecha no valida!\n";
-        } else {
-            if (!DateUtil.validDate(birthdayField.getText())) {
-                errorMessage += "Usa formato fecha!\n";
-            }
         }
 
         if (errorMessage.length() == 0) {

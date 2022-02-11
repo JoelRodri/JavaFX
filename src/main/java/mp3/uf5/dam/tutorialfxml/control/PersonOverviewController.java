@@ -5,16 +5,15 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import mp3.uf5.dam.tutorialfxml.MainApp;
-import mp3.uf5.dam.tutorialfxml.model.Person;
-import mp3.uf5.dam.tutorialfxml.util.DateUtil;
+import mp3.uf5.dam.tutorialfxml.model.Movie;
 
 public class PersonOverviewController {
     @FXML
-    private TableView<Person> personTable;
+    private TableView<Movie> personTable;
     @FXML
-    private TableColumn<Person, String> firstNameColumn;
+    private TableColumn<Movie, String> firstNameColumn;
     @FXML
-    private TableColumn<Person, String> lastNameColumn;
+    private TableColumn<Movie, String> lastNameColumn;
 
     @FXML
     private Label firstNameLabel;
@@ -90,21 +89,21 @@ public class PersonOverviewController {
      * Rellena todos los campos de texto para mostrar detalles sobre la persona.
      * Si la persona especificada es nula, se borran todos los campos de texto.
      *
-     * @param person la persona o null
+     * @param movie la persona o null
      */
-    private void showPersonDetails(Person person) {
-        if (person != null) {
+    private void showPersonDetails(Movie movie) {
+        if (movie != null) {
             // Fill the labels with info from the person object.
-            firstNameLabel.setText(person.getTitulo());
-            lastNameLabel.setText(person.getAño());
-            streetLabel.setText(person.getDirector());
-            postalCodeLabel.setText(person.getActor());  //titulo, año , director, actor, idiomas, sinopsis, cartel,trailer
-            cityLabel.setText(person.getIdiomas());
-            birthdayLabel.setText(person.getSinopsis());
+            firstNameLabel.setText(movie.getTitulo());
+            lastNameLabel.setText(movie.getAño());
+            streetLabel.setText(movie.getDirector());
+            postalCodeLabel.setText(movie.getActor());  //titulo, año , director, actor, idiomas, sinopsis, cartel,trailer
+            cityLabel.setText(movie.getIdiomas());
+            birthdayLabel.setText(movie.getSinopsis());
 
-            image.setImage(new Image(person.getCartel()));
+            image.setImage(new Image(movie.getCartel()));
 
-            String url = person.getTrailer();
+            String url = movie.getTrailer();
             universal = url;
             //mainApp.getHostServices().showDocument(url);
 
@@ -150,10 +149,10 @@ public class PersonOverviewController {
 
     @FXML
     private void handleNewPerson() {
-        Person tempPerson = new Person();
-        boolean okClicked = mainApp.showPersonEditDialog(tempPerson);
+        Movie tempMovie = new Movie();
+        boolean okClicked = mainApp.showPersonEditDialog(tempMovie);
         if (okClicked) {
-            mainApp.getPersonData().add(tempPerson);
+            mainApp.getPersonData().add(tempMovie);
         }
     }
 
@@ -163,11 +162,11 @@ public class PersonOverviewController {
      */
     @FXML
     private void handleEditPerson() {
-        Person selectedPerson = personTable.getSelectionModel().getSelectedItem();
-        if (selectedPerson != null) {
-            boolean okClicked = mainApp.showPersonEditDialog(selectedPerson);
+        Movie selectedMovie = personTable.getSelectionModel().getSelectedItem();
+        if (selectedMovie != null) {
+            boolean okClicked = mainApp.showPersonEditDialog(selectedMovie);
             if (okClicked) {
-                showPersonDetails(selectedPerson);
+                showPersonDetails(selectedMovie);
             }
 
         } else {

@@ -9,15 +9,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import mp3.uf5.dam.tutorialfxml.control.PersonEditDialogController;
+import mp3.uf5.dam.tutorialfxml.control.MovieEditDialogController;
 import mp3.uf5.dam.tutorialfxml.control.PersonOverviewController;
 import mp3.uf5.dam.tutorialfxml.control.RootLayoutControler;
-import mp3.uf5.dam.tutorialfxml.model.Person;
+import mp3.uf5.dam.tutorialfxml.model.Movie;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.w3c.dom.ls.LSOutput;
 import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
@@ -39,7 +38,7 @@ public class MainApp extends Application {
     private BorderPane rootLayout;
     public static int[] puntuacion;
 
-    private ObservableList<Person> personData = FXCollections.observableArrayList();
+    private ObservableList<Movie> movieData = FXCollections.observableArrayList();
 
     public MainApp() {
         // Add some sample data
@@ -55,8 +54,8 @@ public class MainApp extends Application {
      *
      * @return ObservableList<Person>
      */
-    public ObservableList<Person> getPersonData() {
-        return personData;
+    public ObservableList<Movie> getPersonData() {
+        return movieData;
     }
 
     @Override
@@ -116,10 +115,10 @@ public class MainApp extends Application {
      * clicks OK, the changes are saved into the provided person object and true
      * is returned.
      *
-     * @param person the person object to be edited
+     * @param movie the person object to be edited
      * @return true if the user clicked OK, false otherwise.
      */
-    public boolean showPersonEditDialog(Person person) {
+    public boolean showPersonEditDialog(Movie movie) {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
@@ -135,9 +134,9 @@ public class MainApp extends Application {
             dialogStage.setScene(scene);
 
             // Set the person into the controller.
-            PersonEditDialogController controller = loader.getController();
+            MovieEditDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
-            controller.setPerson(person);
+            controller.setPerson(movie);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
@@ -297,7 +296,7 @@ public class MainApp extends Application {
                     String imagen = "http://gencat.cat/llengua/cinema/"+ lastname;
 
 
-                    personData.add(new Person(titulo, año , director, actor, idiomas, sinopsis, cartel,trailer));
+                    movieData.add(new Movie(titulo, año , director, actor, idiomas, sinopsis, cartel,trailer));
 
                     //personData.add(new Person(firstname, imagen , street, city));
 

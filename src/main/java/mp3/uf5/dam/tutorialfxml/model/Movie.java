@@ -1,11 +1,8 @@
 package mp3.uf5.dam.tutorialfxml.model;
 
 import javafx.beans.property.*;
-import javafx.scene.image.Image;
 
-import java.time.LocalDate;
-
-public class Person {
+public class Movie {
 
     /*private final StringProperty firstName;
     private final StringProperty lastName;
@@ -35,11 +32,11 @@ public class Person {
         this(null,null,null,null);
     }*/
 
-    public Person(){
+    public Movie(){
         this(null,null,null,null,null,null,null,null);
     }
 
-    public Person(String titulo, String año, String director, String actor, String idiomas, String sinopsis, String cartel, String trailer) {
+    public Movie(String titulo, String año, String director, String actor, String idiomas, String sinopsis, String cartel, String trailer) {
         this.titulo = new SimpleStringProperty(titulo);
         this.año = new SimpleStringProperty(año);
         this.director = new SimpleStringProperty(director);

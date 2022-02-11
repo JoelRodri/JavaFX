@@ -11,15 +11,26 @@ import mp3.uf5.dam.tutorialfxml.MainApp;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
+/**
+ * Esta calse nos ayudara a controlar el graphic.fxml, que es una nueva ventana con el grafico.
+ */
+
 public class GraphicController implements Initializable {
 
+    /**
+     * Creamos las variables de la clase.
+     */
     @FXML
     private PieChart pieChart;
 
     int[] puntuacion;
 
 
-
+    /**
+     * @param  url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         puntuacion = MainApp.getpuntuacion();
@@ -27,12 +38,6 @@ public class GraphicController implements Initializable {
 
 
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-                /*new PieChart.Data("LUCHADOR",stats[0]),
-                new PieChart.Data("MAGO",stats[1]),
-                new PieChart.Data("ASESINO",stats[2]),
-                new PieChart.Data("TIRADOR",stats[3]),
-                new PieChart.Data("TANQUE",stats[4]),
-                new PieChart.Data("APOYO",stats[5]));*/
 
                 new PieChart.Data("Enero",puntuacion[0]),
                 new PieChart.Data("Febrero",puntuacion[1]),
